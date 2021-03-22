@@ -7,7 +7,7 @@ const svg = d3.select('svg')
     .attr('height', height);
 
 d3.csv("data/dataset.csv").then(function(data) {
-    console.log(data);
+    //console.log(data);
     const hierarchy = buildHierarchy(data);
     const root = d3.pack()
         .size([width - 2, height - 2])
@@ -22,7 +22,7 @@ d3.csv("data/dataset.csv").then(function(data) {
         .join("g")
         .attr("transform", d => `translate(${d.x + 1},${d.y + 1})`);
     const tooltipHTML = document.getElementById('tooltip');
-    node.append("path")
+    node.append("circle")
         .attr("r", d => d.r)
         .attr("fill", d => color[d.height])
         .on("mouseover", (d, i) => {
@@ -102,6 +102,6 @@ function buildHierarchy(csv) {
             }
         }
     }
-    console.log(root);
+    //console.log(root);
     return root;
 }
